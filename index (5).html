@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#01064a">
+<title>OrgetX Ludo</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ লোডিং ============ -->
+<section id="screen-loading" class="screen center active">
+  <div class="logo-mark big">X</div>
+  <div class="app-title" data-appname></div>
+  <div class="spinner" id="loading-spinner"></div>
+  <div id="loading-retry" class="hidden retry-box">
+    <p id="loading-retry-msg">সংযোগে সমস্যা হয়েছে</p>
+    <button class="btn primary" id="btn-retry">আবার চেষ্টা করুন</button>
+    <button class="btn ghost" id="btn-retry-logout">লগআউট</button>
+  </div>
+</section>
+
+<!-- ============ লগইন / সাইন আপ ============ -->
+<section id="screen-auth" class="screen au-screen">
+  <div class="au-hero"><img src="img/login-hero.jpg" alt="OrgetX Ludo"></div>
+
+  <div class="au-card">
+    <div class="au-tabs" role="tablist">
+      <button class="au-tab on" id="tab-login" type="button">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="18.2" r="1" fill="currentColor"/></svg>
+        <span>মোবাইল দিয়ে লগইন</span>
+      </button>
+      <button class="au-tab" id="tab-signup" type="button">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 20c.8-4 3.8-6 7.5-6s6.700 2 7.500 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span>নতুন অ্যাকাউন্ট তৈরি</span>
+      </button>
+    </div>
+
+    <form id="form-login" class="au-form" autocomplete="on">
+      <div class="au-field">
+        <svg class="au-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="18.2" r="1" fill="currentColor"/></svg>
+        <input id="login-phone" type="tel" inputmode="numeric" placeholder="মোবাইল নম্বর" autocomplete="tel" maxlength="16">
+        <button type="button" class="au-x" data-clear="login-phone" aria-label="মুছুন">✕</button>
+      </div>
+      <div class="au-field">
+        <svg class="au-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 10.5V8a3.500 3.500 0 0 1 7 0v2.500" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <input id="login-pass" type="password" inputmode="numeric" placeholder="পিন (৬ ডিজিট)" autocomplete="current-password" maxlength="6">
+        <button type="button" class="au-x au-eye" data-eye="login-pass" aria-label="পিন দেখুন">👁</button>
+      </div>
+      <button class="au-btn" type="submit" id="btn-login">লগইন <span aria-hidden="true">→</span></button>
+      <button class="au-link" type="button" id="btn-forgot">পিন ভুলে গেছেন?</button>
+    </form>
+
+    <form id="form-signup" class="au-form hidden" autocomplete="on">
+      <div class="au-field">
+        <svg class="au-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 20c.8-4 3.8-6 7.5-6s6.700 2 7.500 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <input id="su-name" type="text" placeholder="আপনার নাম" maxlength="24" autocomplete="name">
+      </div>
+      <div class="au-field">
+        <svg class="au-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="18.2" r="1" fill="currentColor"/></svg>
+        <input id="su-phone" type="tel" inputmode="numeric" placeholder="মোবাইল নম্বর" autocomplete="tel" maxlength="16">
+        <button type="button" class="au-x" data-clear="su-phone" aria-label="মুছুন">✕</button>
+      </div>
+      <div class="au-field">
+        <svg class="au-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 10.5V8a3.500 3.500 0 0 1 7 0v2.500" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <input id="su-pass" type="password" inputmode="numeric" placeholder="পিন (৬ ডিজিট)" autocomplete="new-password" maxlength="6">
+        <button type="button" class="au-x au-eye" data-eye="su-pass" aria-label="পিন দেখুন">👁</button>
+      </div>
+      <div class="au-field">
+        <svg class="au-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 10.5V8a3.500 3.500 0 0 1 7 0v2.500" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <input id="su-pass2" type="password" inputmode="numeric" placeholder="পিন আবার লিখুন" autocomplete="new-password" maxlength="6">
+        <button type="button" class="au-x au-eye" data-eye="su-pass2" aria-label="পিন দেখুন">👁</button>
+      </div>
+      <button class="au-btn" type="submit" id="btn-signup">অ্যাকাউন্ট খুলুন <span aria-hidden="true">→</span></button>
+    </form>
+
+    <p class="au-error" id="auth-error"></p>
+    <div class="au-note hidden" id="forgot-box">
+      পিন ভুলে গেলে, আগে জুড়ে রাখা Gmail দিয়ে নিচের বাটনে ঢুকুন। তারপর <b>প্রোফাইল → পিন বদলান</b> থেকে নতুন ৬ সংখ্যার পিন বসান।
+    </div>
+
+    <div class="au-or"><span>অথবা</span></div>
+    <button class="au-google" id="btn-google" type="button">
+      <svg width="22" height="22" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.800-6.800C35.800 2.400 30.300 0 24 0 14.600 0 6.500 5.400 2.600 13.300l7.900 6.100C12.400 13.600 17.700 9.500 24 9.500z"/><path fill="#4285F4" d="M46.500 24.500c0-1.600-.1-3.100-.4-4.500H24v9h12.700c-.6 3-2.300 5.500-4.800 7.200l7.600 5.900c4.400-4.100 7-10.100 7-17.600z"/><path fill="#FBBC05" d="M10.500 28.600A14.500 14.500 0 0 1 9.500 24c0-1.600.3-3.200.8-4.600l-7.900-6.100A24 24 0 0 0 0 24c0 3.900.9 7.500 2.600 10.800l7.900-6.200z"/><path fill="#34A853" d="M24 48c6.500 0 11.900-2.100 15.900-5.800l-7.600-5.900c-2.100 1.400-4.900 2.300-8.300 2.300-6.300 0-11.600-4.100-13.500-9.900l-7.900 6.200C6.500 42.600 14.600 48 24 48z"/></svg>
+      <span>গুগল দিয়ে লগইন</span>
+    </button>
+  </div>
+</section>
+
+<!-- ============ সাইন আপের পর: Gmail জোড়া (ঐচ্ছিক) ============ -->
+<section id="screen-recover" class="screen au-screen">
+  <div class="au-hero small"><img src="img/login-hero.jpg" alt="OrgetX Ludo"></div>
+  <div class="au-card">
+    <h2 class="au-h">অ্যাকাউন্ট সুরক্ষিত করুন</h2>
+    <p class="au-p">আপনার Gmail জুড়ে রাখলে পিন ভুলে গেলেও অ্যাকাউন্টে ঢুকতে পারবেন। না জুড়লে পিন ভুলে গেলে অ্যাকাউন্ট ফেরানোর উপায় থাকবে না।</p>
+    <button class="au-google" id="btn-link-google" type="button">
+      <svg width="22" height="22" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.800-6.800C35.800 2.400 30.300 0 24 0 14.600 0 6.500 5.400 2.600 13.300l7.900 6.100C12.400 13.600 17.700 9.500 24 9.500z"/><path fill="#4285F4" d="M46.500 24.500c0-1.600-.1-3.100-.4-4.500H24v9h12.700c-.6 3-2.300 5.500-4.800 7.200l7.600 5.900c4.400-4.100 7-10.100 7-17.600z"/><path fill="#FBBC05" d="M10.500 28.600A14.500 14.500 0 0 1 9.500 24c0-1.600.3-3.200.8-4.600l-7.900-6.100A24 24 0 0 0 0 24c0 3.900.9 7.500 2.600 10.800l7.900-6.200z"/><path fill="#34A853" d="M24 48c6.500 0 11.900-2.100 15.900-5.800l-7.600-5.900c-2.100 1.400-4.900 2.300-8.300 2.300-6.300 0-11.600-4.100-13.500-9.900l-7.900 6.200C6.500 42.600 14.600 48 24 48z"/></svg>
+      <span>Gmail জুড়ুন</span>
+    </button>
+    <button class="au-link" id="btn-skip-link" type="button">এখন না, পরে করব</button>
+    <p class="au-error" id="recover-error"></p>
+  </div>
+</section>
+
+<!-- ============ প্রোফাইল সম্পূর্ণ করুন (Gmail-এ প্রথমবার) ============ -->
+<section id="screen-setup" class="screen au-screen">
+  <div class="au-hero small"><img src="img/login-hero.jpg" alt="OrgetX Ludo"></div>
+  <div class="au-card">
+    <h2 class="au-h">প্রোফাইল তৈরি করুন</h2>
+    <p class="au-p">খেলোয়াড় হিসেবে আপনার পরিচয়</p>
+    <form id="form-setup" class="au-form">
+      <div class="avatar-pick">
+        <div class="avatar xl" id="setup-avatar"></div>
+        <label class="btn small ghost">ছবি বেছে নিন
+          <input type="file" id="setup-photo" accept="image/*" hidden>
+        </label>
+      </div>
+      <div class="au-field">
+        <svg class="au-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 20c.8-4 3.8-6 7.5-6s6.700 2 7.500 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <input id="setup-name" type="text" maxlength="24" placeholder="আপনার নাম">
+      </div>
+      <div class="au-field">
+        <svg class="au-ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="18.2" r="1" fill="currentColor"/></svg>
+        <input id="setup-phone" type="tel" inputmode="numeric" placeholder="মোবাইল নম্বর (ঐচ্ছিক)" maxlength="16">
+      </div>
+      <button class="au-btn" type="submit" id="btn-setup">শুরু করুন <span aria-hidden="true">→</span></button>
+      <button class="au-link" type="button" id="btn-setup-logout">লগআউট</button>
+    </form>
+    <p class="au-error" id="setup-error"></p>
+  </div>
+</section>
+
+<!-- ============ মূল এপ ============ -->
+<section id="screen-app" class="screen">
+  <header class="topbar">
+    <div class="brand"><div class="logo-mark">X</div><span class="app-title" data-appname></span></div>
+    <button class="avatar sm" id="top-avatar" aria-label="প্রোফাইল"></button>
+  </header>
+
+  <main class="content">
+    <!-- হোম -->
+    <div id="page-home" class="page active">
+      <div class="hero">
+        <div class="hero-text">
+          <div class="muted">স্বাগতম</div>
+          <div class="hero-name" id="home-name"></div>
+          <button class="pid-chip" id="home-pid" type="button"></button>
+        </div>
+        <div class="avatar lg" id="home-avatar"></div>
+      </div>
+
+      <h2 class="section-title">গেম</h2>
+      <div id="game-list" class="game-list"></div>
+    </div>
+
+    <!-- প্রোফাইল -->
+    <div id="page-profile" class="page">
+      <div class="profile-card">
+        <div class="avatar-pick">
+          <div class="avatar xl" id="pf-avatar"></div>
+          <label class="btn small ghost">ছবি বদলান
+            <input type="file" id="pf-photo" accept="image/*" hidden>
+          </label>
+        </div>
+        <label>নাম
+          <input id="pf-name" type="text" maxlength="24">
+        </label>
+        <div class="info-row"><span class="muted">প্লেয়ার আইডি</span><button class="pid-chip" id="pf-pid" type="button"></button></div>
+        <div class="info-row"><span class="muted">মোবাইল</span><span id="pf-phone">—</span></div>
+        <div class="info-row"><span class="muted">লগইন</span><span id="pf-method">—</span></div>
+        <button class="btn primary" id="btn-pf-save" type="button">সংরক্ষণ করুন</button>
+        <p class="error" id="pf-error"></p>
+      </div>
+
+      <div class="profile-card" id="pf-security">
+        <h3 class="pf-h">অ্যাকাউন্টের সুরক্ষা</h3>
+        <div class="info-row"><span class="muted">Gmail</span><span id="pf-gmail">জোড়া নেই</span></div>
+        <button class="btn ghost" id="pf-link-google" type="button">Gmail জুড়ুন</button>
+
+        <div id="pf-pin-wrap">
+          <button class="btn ghost" id="pf-pin-toggle" type="button">পিন বদলান</button>
+          <div id="pf-pin-box" class="hidden pin-box">
+            <label>বর্তমান পিন <span class="hint">(ভুলে গেলে ফাঁকা রাখুন, Gmail দিয়ে ঢুকে থাকলে চলবে)</span>
+              <input id="pf-pin-old" type="password" inputmode="numeric" maxlength="6" placeholder="৬ ডিজিট">
+            </label>
+            <label>নতুন পিন
+              <input id="pf-pin-new" type="password" inputmode="numeric" maxlength="6" placeholder="৬ ডিজিট">
+            </label>
+            <label>নতুন পিন আবার
+              <input id="pf-pin-new2" type="password" inputmode="numeric" maxlength="6" placeholder="৬ ডিজিট">
+            </label>
+            <button class="btn primary" id="btn-pf-pin" type="button">নতুন পিন সংরক্ষণ করুন</button>
+          </div>
+        </div>
+        <p class="error" id="pf-sec-error"></p>
+      </div>
+
+      <button class="btn danger" id="btn-logout" type="button">লগআউট</button>
+      <p class="muted center-text small"><span data-appname></span> · সংস্করণ ১ (ধাপ ২)</p>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav-btn active" data-page="home" type="button"><span class="ni">🏠</span>হোম</button>
+    <button class="nav-btn" data-page="profile" type="button"><span class="ni">👤</span>প্রোফাইল</button>
+  </nav>
+</section>
+
+<!-- ============ লুডু ============ -->
+<section id="screen-ludo" class="screen"></section>
+
+<div id="toast" class="toast"></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
