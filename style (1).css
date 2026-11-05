@@ -1,0 +1,457 @@
+:root{
+  --bg1:#14123a;
+  --bg2:#0b0a22;
+  --card:rgba(255,255,255,.07);
+  --card-b:rgba(255,255,255,.10);
+  --text:#f4f3ff;
+  --muted:#a9a6d6;
+  --accent1:#ff7a45;
+  --accent2:#ffc53d;
+  --violet:#6c5cff;
+  --danger:#ff5c7a;
+  --ok:#3ddc97;
+  --radius:18px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%}
+body{
+  font-family:"Hind Siliguri",system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:radial-gradient(1200px 600px at 20% -10%,#2a2570 0%,transparent 60%),
+             linear-gradient(180deg,var(--bg1),var(--bg2));
+  background-attachment:fixed;
+  color:var(--text);
+  font-size:16px;line-height:1.5;
+}
+h1,h2{margin:0}
+.hidden{display:none!important}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.center-text{text-align:center}
+
+/* স্ক্রিন */
+.screen{display:none;min-height:100dvh;width:100%;max-width:480px;margin:0 auto}
+.screen.active{display:block}
+.screen.center.active{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+#screen-app.active{display:flex;flex-direction:column}
+
+/* লোগো */
+.logo-mark{
+  width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  font-weight:700;font-size:20px;color:#14123a;
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  box-shadow:0 6px 18px rgba(255,122,69,.35);
+}
+.logo-mark.big{width:72px;height:72px;border-radius:20px;font-size:42px}
+.app-title{font-weight:700;letter-spacing:.3px}
+h1.app-title{font-size:30px}
+.spinner{width:30px;height:30px;border-radius:50%;border:3px solid rgba(255,255,255,.2);border-top-color:var(--accent2);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.retry-box{text-align:center;display:flex;flex-direction:column;gap:10px;padding:0 24px;width:100%}
+
+/* অথ */
+.auth-wrap{padding:28px 22px 40px}
+.auth-head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:22px}
+.auth-head h1{font-size:26px}
+.auth-head p{margin:0}
+.divider{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:13px;margin:18px 0}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--card-b)}
+.tabs{display:grid;grid-template-columns:1fr 1fr;background:var(--card);border-radius:14px;padding:4px;margin-bottom:16px}
+.tab{border:0;background:transparent;color:var(--muted);font:inherit;font-weight:600;padding:10px;border-radius:11px;cursor:pointer}
+.tab.active{background:linear-gradient(135deg,var(--violet),#8a6cff);color:#fff;box-shadow:0 4px 14px rgba(108,92,255,.4)}
+
+/* ফর্ম */
+.form{display:flex;flex-direction:column;gap:14px}
+.form label,.profile-card label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted);font-weight:500}
+.hint{font-size:12px;opacity:.8}
+input[type=text],input[type=tel],input[type=password]{
+  width:100%;height:50px;border-radius:14px;border:1px solid var(--card-b);
+  background:rgba(255,255,255,.06);color:var(--text);font:inherit;font-size:17px;padding:0 14px;outline:none;
+}
+input:focus{border-color:var(--accent2);box-shadow:0 0 0 3px rgba(255,197,61,.18)}
+input::placeholder{color:rgba(169,166,214,.55)}
+
+/* বোতাম */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:50px;border-radius:14px;border:0;font:inherit;font-weight:700;font-size:17px;
+  padding:0 18px;cursor:pointer;color:var(--text);width:100%;
+  transition:transform .08s ease,opacity .2s;
+}
+.btn:active{transform:scale(.98)}
+.btn[disabled]{opacity:.55;pointer-events:none}
+.btn.primary{background:linear-gradient(135deg,var(--accent1),var(--accent2));color:#2a1405;box-shadow:0 8px 22px rgba(255,122,69,.3)}
+.btn.google{background:#fff;color:#222}
+.btn.ghost{background:var(--card);border:1px solid var(--card-b)}
+.btn.danger{background:rgba(255,92,122,.14);color:#ff8fa5;border:1px solid rgba(255,92,122,.35);margin-top:6px}
+.btn.small{min-height:38px;font-size:14px;width:auto;padding:0 14px}
+.error{color:#ff8fa5;min-height:22px;margin:12px 0 0;font-size:14px;text-align:center}
+
+/* অ্যাভাটার */
+.avatar{
+  border-radius:50%;display:grid;place-items:center;overflow:hidden;flex:none;
+  font-weight:700;color:#fff;border:2px solid rgba(255,255,255,.18);background:var(--violet);
+  padding:0;cursor:default;
+}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.avatar.sm{width:38px;height:38px;font-size:17px;cursor:pointer}
+.avatar.lg{width:68px;height:68px;font-size:30px}
+.avatar.xl{width:104px;height:104px;font-size:44px}
+.avatar-pick{display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:6px}
+
+/* মূল এপ */
+.topbar{
+  position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;
+  padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
+  background:rgba(20,18,58,.82);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--card-b);
+}
+.brand{display:flex;align-items:center;gap:10px;font-size:19px}
+.content{flex:1;padding:16px 16px 96px}
+.page{display:none}
+.page.active{display:block}
+
+.hero{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:18px;border-radius:var(--radius);
+  background:linear-gradient(135deg,rgba(108,92,255,.55),rgba(255,122,69,.35));
+  border:1px solid var(--card-b);
+}
+.hero-name{font-size:24px;font-weight:700;line-height:1.2;margin:2px 0 8px;word-break:break-word}
+.pid-chip{
+  display:inline-flex;align-items:center;gap:6px;border:1px solid var(--card-b);
+  background:rgba(0,0,0,.25);color:var(--text);font:inherit;font-size:13px;
+  padding:4px 12px;border-radius:99px;cursor:pointer;
+}
+.section-title{font-size:18px;margin:22px 2px 10px}
+
+.game-list{display:flex;flex-direction:column;gap:12px}
+.game-card{
+  display:flex;align-items:center;gap:14px;text-align:left;width:100%;
+  padding:14px;border-radius:var(--radius);background:var(--card);border:1px solid var(--card-b);
+  color:var(--text);font:inherit;cursor:pointer;
+}
+.game-card:active{transform:scale(.99)}
+.game-ico{
+  width:62px;height:62px;border-radius:16px;display:grid;place-items:center;font-size:34px;flex:none;
+  background:linear-gradient(135deg,rgba(255,122,69,.35),rgba(255,197,61,.25));
+}
+.game-info{flex:1;min-width:0}
+.game-name{font-size:19px;font-weight:700}
+.game-desc{font-size:13px;color:var(--muted)}
+.badge{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;background:rgba(255,197,61,.18);color:var(--accent2);white-space:nowrap}
+.badge.ok{background:rgba(61,220,151,.18);color:var(--ok)}
+
+.profile-card{
+  display:flex;flex-direction:column;gap:14px;padding:18px;border-radius:var(--radius);
+  background:var(--card);border:1px solid var(--card-b);margin-bottom:14px;
+}
+.info-row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:15px;padding:2px 0}
+
+.bottom-nav{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:6;
+  display:grid;grid-template-columns:1fr 1fr;
+  padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+  background:rgba(14,12,40,.92);backdrop-filter:blur(12px);border-top:1px solid var(--card-b);
+}
+.nav-btn{
+  border:0;background:transparent;color:var(--muted);font:inherit;font-size:13px;font-weight:600;
+  display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px;border-radius:12px;cursor:pointer;
+}
+.nav-btn .ni{font-size:22px;filter:grayscale(1);opacity:.7}
+.nav-btn.active{color:var(--accent2)}
+.nav-btn.active .ni{filter:none;opacity:1}
+
+.toast{
+  position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom));transform:translate(-50%,20px);
+  background:#241f66;color:#fff;border:1px solid var(--card-b);padding:10px 18px;border-radius:99px;
+  font-size:15px;opacity:0;pointer-events:none;transition:.25s;z-index:20;max-width:90%;text-align:center;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- লগইন / সাইন আপ (নতুন নকশা) ---------- */
+.au-screen.active{display:flex;flex-direction:column;align-items:center;padding:0 16px 32px;
+  background:radial-gradient(600px 380px at 50% 0,#2b3bd1 0%,transparent 70%),linear-gradient(180deg,#0a1170,#01064a);
+  max-width:none}
+.au-hero{width:100%;max-width:440px;margin-top:6px}
+.au-hero img{width:100%;display:block;border-radius:0 0 28px 28px;mask-image:linear-gradient(#000 82%,transparent);-webkit-mask-image:linear-gradient(#000 82%,transparent)}
+.au-hero.small{max-width:260px}
+.au-card{width:100%;max-width:440px;margin-top:-18px;position:relative;padding:16px;border-radius:26px;
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 18px 50px rgba(0,0,40,.55)}
+.au-tabs{display:flex;gap:6px;padding:5px;border-radius:18px;background:rgba(0,0,40,.35);margin-bottom:16px}
+.au-tab{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 4px;border:0;border-radius:14px;
+  background:transparent;color:#c9cdf5;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer}
+.au-tab.on{background:linear-gradient(180deg,#5a63ff,#3340e0);color:#fff;box-shadow:0 4px 14px rgba(70,80,255,.5)}
+.au-form{display:flex;flex-direction:column;gap:12px}
+.au-field{display:flex;align-items:center;gap:10px;padding:0 12px;height:54px;border-radius:16px;
+  background:rgba(0,0,40,.4);border:1px solid rgba(255,255,255,.2)}
+.au-field:focus-within{border-color:#ffb23d;box-shadow:0 0 0 3px rgba(255,178,61,.25)}
+.au-ic{width:22px;height:22px;color:#ffb23d;flex:none}
+.au-field input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:#fff;font:inherit;font-size:16px}
+.au-field input::placeholder{color:#9aa0dd}
+.au-x{width:30px;height:30px;border:0;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-size:13px;cursor:pointer;flex:none}
+.au-btn{height:54px;border:0;border-radius:16px;color:#fff;font:inherit;font-size:18px;font-weight:700;cursor:pointer;
+  background:linear-gradient(180deg,#ffa83d,#ff6a1a);box-shadow:0 8px 22px rgba(255,106,26,.5),inset 0 2px 0 rgba(255,255,255,.35)}
+.au-btn:disabled{opacity:.6}
+.au-link{background:none;border:0;color:#ffd27a;font:inherit;font-size:14px;cursor:pointer;padding:6px}
+.au-error{min-height:20px;margin:8px 0 0;color:#ff9fb0;font-size:14px;text-align:center}
+.au-note{margin:6px 0;padding:10px 12px;border-radius:12px;background:rgba(255,200,80,.14);color:#ffe3a3;font-size:13.5px}
+.au-or{display:flex;align-items:center;gap:10px;margin:12px 0;color:#c9cdf5;font-size:14px}
+.au-or::before,.au-or::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.22)}
+.au-google{width:100%;height:54px;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:16px;
+  background:#fff;border:0;color:#222;font:inherit;font-size:16px;font-weight:600;cursor:pointer}
+.au-h{font-size:22px;margin-bottom:6px}
+.au-p{margin:0 0 14px;color:#c9cdf5;font-size:14.5px}
+.avatar-pick{display:flex;align-items:center;gap:14px}
+.pin-box{display:flex;flex-direction:column;gap:10px;margin:10px 0}
+.pin-box input{width:100%;padding:12px;border-radius:12px;border:1px solid var(--card-b);background:rgba(0,0,0,.25);color:#fff;font:inherit}
+.pf-h{margin:0 0 8px}
+
+/* ================== লুডু ================== */
+:root{
+  --ludo-0:#e53935; --ludo-1:#2e9e4a; --ludo-2:#f2b705; --ludo-3:#1e88e5;
+}
+.c0{--c:var(--ludo-0)} .c1{--c:var(--ludo-1)} .c2{--c:var(--ludo-2)} .c3{--c:var(--ludo-3)}
+
+#screen-ludo.active{display:block}
+.icon-btn{
+  width:40px;height:40px;border-radius:12px;border:1px solid var(--card-b);
+  background:var(--card);color:var(--text);font:inherit;font-size:20px;cursor:pointer;
+}
+.topbar .brand .top-emoji{font-size:22px}
+
+/* সেটআপ */
+.ludo-setup{padding:16px 16px 40px}
+.setup-card{
+  display:flex;flex-direction:column;gap:16px;padding:18px;border-radius:var(--radius);
+  background:var(--card);border:1px solid var(--card-b);
+}
+.setup-card h2{font-size:22px}
+.setup-card p{margin:0}
+.field .label{font-size:14px;color:var(--muted);margin-bottom:8px;font-weight:500}
+.seg{display:flex;gap:8px}
+.seg-btn{
+  flex:1;min-height:44px;border-radius:12px;border:1px solid var(--card-b);
+  background:rgba(255,255,255,.05);color:var(--text);font:inherit;font-weight:600;font-size:15px;cursor:pointer;padding:0 8px;
+}
+.seg-btn.on{background:linear-gradient(135deg,var(--violet),#8a6cff);border-color:transparent;box-shadow:0 4px 14px rgba(108,92,255,.4)}
+.colors{display:flex;gap:14px}
+.color-btn{
+  width:48px;height:48px;border-radius:50%;border:3px solid rgba(255,255,255,.25);
+  background:var(--c);cursor:pointer;
+}
+.color-btn.on{border-color:#fff;box-shadow:0 0 0 3px var(--c), 0 6px 16px rgba(0,0,0,.4);transform:scale(1.08)}
+
+/* খেলার পাতা */
+.ludo-game{padding:8px 8px calc(24px + env(safe-area-inset-bottom));position:relative}
+.ludo-players{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:6px;margin:4px 0 8px}
+.pl{
+  display:flex;align-items:center;gap:6px;padding:6px;border-radius:12px;min-width:0;
+  background:var(--card);border:2px solid transparent;
+}
+.pl.cur{border-color:var(--c);background:rgba(255,255,255,.12);box-shadow:0 0 14px color-mix(in srgb,var(--c) 55%,transparent)}
+.pl-av{
+  width:30px;height:30px;border-radius:50%;flex:none;display:grid;place-items:center;overflow:hidden;
+  background:var(--c);color:#fff;font-weight:700;font-size:14px;border:2px solid rgba(255,255,255,.7);
+}
+.pl-av img{width:100%;height:100%;object-fit:cover}
+.pl-txt{min-width:0;line-height:1.15}
+.pl-name{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-sub{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pl-team{font-size:11px;font-weight:700;color:var(--accent2);white-space:nowrap}
+
+.board-wrap{
+  width:100%;max-width:480px;margin:0 auto;aspect-ratio:1/1;
+  border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.45);
+}
+#ludo-board{display:block;width:100%;height:100%;touch-action:manipulation}
+.b-bg{fill:#f3f0ff}
+.b-frame{fill:none;stroke:#2b2577;stroke-width:.16}
+.yard-in{fill:#fff;opacity:.92}
+.off .yard{opacity:.25}
+.off .yard-in{opacity:.5}
+.slot{fill:var(--c);opacity:.22;stroke:var(--c);stroke-width:.05}
+.slot-in{fill:none;stroke:#fff;stroke-width:.05;opacity:.8}
+.cell{stroke:#cdc8ea;stroke-width:.05}
+.cell.start,.cell.hc{stroke:rgba(0,0,0,.12);stroke-width:.03}
+.star{fill:#c3bde6}
+.star.start-star{fill:#fff;opacity:.95}
+.tri{stroke:#fff;stroke-width:.06;stroke-linejoin:round}
+.center-disc{fill:#fff;stroke:#cdc8ea;stroke-width:.05}
+.center-star{fill:#f2b705}
+
+.piece{cursor:default;transition:transform .16s ease-out}
+.piece .hit{fill:transparent}
+.piece .p-shadow{fill:rgba(20,15,60,.3)}
+.piece .pawn path,.piece .pawn .head{stroke:rgba(0,0,0,.32);stroke-width:.035;stroke-linejoin:round}
+.piece .shine{fill:rgba(255,255,255,.7)}
+.piece .ring{fill:rgba(255,167,38,.28);stroke:#ff9800;stroke-width:.07;opacity:0}
+.piece.movable{cursor:pointer}
+.piece.movable .ring{opacity:1;transform-box:fill-box;transform-origin:center;animation:ringpulse .8s ease-in-out infinite}
+.piece.movable .pawn{animation:bob .7s ease-in-out infinite}
+@keyframes ringpulse{0%{transform:scale(.85);opacity:1}100%{transform:scale(1.3);opacity:.2}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-.1px)}}
+.piece .pawn.hop{animation:hop .16s ease-out}
+@keyframes hop{0%{transform:translateY(0)}45%{transform:translateY(-.32px)}100%{transform:translateY(0)}}
+
+.target{fill:var(--c);stroke:#fff;stroke-width:.06;cursor:pointer;transform-box:fill-box;transform-origin:center;animation:tgt .9s ease-in-out infinite}
+@keyframes tgt{0%,100%{transform:scale(.8);opacity:.35}50%{transform:scale(1.15);opacity:.7}}
+.spark{animation:spark .65s ease-out forwards}
+@keyframes spark{from{transform:translate(0,0) scale(1);opacity:1}to{transform:translate(var(--dx),var(--dy)) scale(.2);opacity:0}}
+.flash{fill:none;stroke-width:.09;transform-box:fill-box;transform-origin:center;animation:flash .55s ease-out forwards}
+@keyframes flash{from{transform:scale(.2);opacity:1}to{transform:scale(1);opacity:0}}
+
+.ludo-dock{display:flex;align-items:center;gap:14px;margin:14px auto 0;max-width:480px;padding:0 6px}
+.dice{
+  width:72px;height:72px;flex:none;border-radius:16px;border:3px solid var(--c,#8a6cff);background:#fff;
+  display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);padding:10px;gap:2px;
+  cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+.dice:disabled{cursor:default}
+.dice .pip{border-radius:50%;place-self:center;width:12px;height:12px;background:transparent}
+.dice .pip.on{background:#1b1840}
+.dice .dice-q{grid-column:1/4;grid-row:1/4;place-self:center;font-size:34px;font-weight:700;color:var(--c,#8a6cff)}
+.dice.ready{animation:dicepulse .9s ease-in-out infinite}
+@keyframes dicepulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.dice.rolling{animation:diceshake .18s linear infinite}
+@keyframes diceshake{0%{transform:rotate(-8deg)}50%{transform:rotate(8deg) scale(1.05)}100%{transform:rotate(-8deg)}}
+.ludo-status{flex:1;font-size:16px;line-height:1.35;min-height:44px;display:flex;align-items:center;gap:8px}
+.ludo-status .dot{width:14px;height:14px;border-radius:50%;background:var(--c);flex:none;box-shadow:0 0 8px var(--c)}
+
+.ludo-win{
+  position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:20px;
+  background:rgba(8,6,30,.78);backdrop-filter:blur(4px);
+}
+.win-card{
+  width:100%;max-width:360px;text-align:center;padding:24px 20px;border-radius:22px;
+  background:linear-gradient(180deg,#26216e,#17143f);border:2px solid var(--c);
+  display:flex;flex-direction:column;gap:12px;box-shadow:0 20px 50px rgba(0,0,0,.6);
+}
+.win-card h2{font-size:24px}
+.win-card p{margin:0}
+.win-emoji{font-size:56px;line-height:1}
+
+
+/* ===== লুডু: সাজসজ্জা ও সহজ ব্যবহার ===== */
+.c0{--cl:#ff8a7d} .c1{--cl:#6fdc87} .c2{--cl:#ffdf5c} .c3{--cl:#6bb8ff}
+.board-wrap{border:3px solid #2b2577;box-shadow:0 14px 34px rgba(0,0,0,.55), 0 0 0 4px rgba(255,255,255,.06)}
+
+.setup-hero{display:flex;align-items:center;gap:14px}
+.hero-dice{
+  width:62px;height:62px;border-radius:18px;display:grid;place-items:center;font-size:36px;flex:none;
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));transform:rotate(-8deg);
+  box-shadow:0 8px 20px rgba(255,122,69,.4);
+}
+.setup-hero h2{font-size:26px;line-height:1.1}
+.seg-btn{min-height:50px;font-size:16px}
+.color-btn{
+  width:56px;height:56px;background:radial-gradient(circle at 35% 30%,var(--cl),var(--c));
+  box-shadow:0 4px 10px rgba(0,0,0,.35),inset 0 -3px 6px rgba(0,0,0,.2);
+}
+#ludo-start{min-height:58px;font-size:19px;margin-top:4px}
+
+.ludo-players{gap:8px}
+.pl{position:relative;padding:8px 8px;border-radius:14px}
+.pl-av{width:36px;height:36px;font-size:15px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+.pl-name{font-size:14px}
+.pl.cur{background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.08))}
+.pl.cur::after{
+  content:"";position:absolute;bottom:-7px;left:50%;width:12px;height:12px;background:var(--c);
+  transform:translateX(-50%) rotate(45deg);border-radius:2px;
+}
+
+.dice{
+  width:78px;height:78px;border-radius:19px;border:3px solid var(--c,#8a6cff);
+  background:linear-gradient(145deg,#ffffff,#d9d5f2);
+  box-shadow:0 10px 22px rgba(0,0,0,.45),inset 0 -4px 8px rgba(0,0,0,.12),inset 0 3px 6px #fff;
+}
+.dice .pip{width:13px;height:13px}
+.dice .pip.on{background:radial-gradient(circle at 35% 30%,#4a43a8,#1b1840)}
+.dice.rolling{animation:tumble .5s linear infinite}
+@keyframes tumble{
+  0%{transform:rotate(0) translateY(0) scale(1)}
+  25%{transform:rotate(110deg) translateY(-10px) scale(1.12)}
+  50%{transform:rotate(230deg) translateY(0) scale(1.04)}
+  75%{transform:rotate(320deg) translateY(-6px) scale(1.1)}
+  100%{transform:rotate(360deg) translateY(0) scale(1)}
+}
+.dice.six{animation:sixglow 1.1s ease-out}
+@keyframes sixglow{
+  0%{box-shadow:0 0 0 0 #ffd54f}
+  40%{box-shadow:0 0 0 16px rgba(255,213,79,.35),0 0 30px #ffb300}
+  100%{box-shadow:0 10px 22px rgba(0,0,0,.45)}
+}
+.ludo-status{font-size:17px;font-weight:500}
+
+.ludo-win{overflow:hidden}
+.win-card{position:relative;z-index:1}
+.confetti{position:absolute;top:-14px;width:9px;height:14px;border-radius:2px;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+
+@media (prefers-reduced-motion:reduce){
+  .piece.movable .pawn,.target,.dice.ready{animation:none}
+}
+
+.ludo-players.four .pl{flex-direction:column;gap:3px;padding:7px 4px;text-align:center}
+.ludo-players.four .pl-txt{width:100%;text-align:center}
+.ludo-players.four .pl.cur::after{bottom:-7px}
+
+/* ---------- খেলার পাতার সাজ (নতুন নকশা) ---------- */
+#screen-ludo.active{background:radial-gradient(500px 420px at 15% 8%,rgba(60,80,255,.45),transparent 70%),
+  radial-gradient(500px 420px at 90% 60%,rgba(150,60,255,.35),transparent 70%),linear-gradient(180deg,#0a1170,#01064a);max-width:none}
+.gm-corners{display:flex;justify-content:space-between;align-items:flex-start;max-width:480px;margin:0 auto 4px}
+.gm-corners img{width:64px;height:auto;border-radius:12px;opacity:.95;mix-blend-mode:screen}
+.board-wrap{border:4px solid #e9b949;border-radius:20px;box-shadow:0 0 0 4px #6a3bd1,0 0 26px rgba(150,90,255,.6),0 14px 34px rgba(0,0,0,.55)}
+.ludo-players .pl{border:2px solid var(--c,#6c5cff);border-radius:18px;box-shadow:0 0 14px color-mix(in srgb,var(--c,#6c5cff) 70%,transparent)}
+.dice{width:84px;height:84px;box-shadow:0 0 28px rgba(255,200,80,.55),0 8px 18px rgba(0,0,0,.5)}
+.gm-banner{max-width:480px;margin:18px auto 0}
+.gm-banner img{width:100%;display:block;border-radius:18px}
+
+/* ---------- নকশা সংশোধন: ছক্কা বোর্ডের নিচে ছবির উপরে, চিহ্ন ---------- */
+#screen-ludo.active{background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 900' preserveAspectRatio='none'><defs><linearGradient id='a' x1='0' x2='1'><stop offset='0' stop-color='%23ff3df0' stop-opacity='0'/><stop offset='.5' stop-color='%23b04dff'/><stop offset='1' stop-color='%234db8ff' stop-opacity='0'/></linearGradient></defs><g fill='none' stroke='url(%23a)' stroke-linecap='round'><path d='M-20 690 C120 600 260 780 430 640' stroke-width='3' opacity='.8'/><path d='M-20 740 C140 650 280 830 430 700' stroke-width='2' opacity='.6'/><path d='M-20 800 C150 720 270 880 430 770' stroke-width='4' opacity='.7'/><path d='M-20 60 C130 130 270 10 430 90' stroke-width='3' opacity='.6'/><path d='M-20 110 C140 170 280 60 430 140' stroke-width='2' opacity='.5'/></g></svg>") center/100% 100% no-repeat,
+  radial-gradient(520px 420px at 12% 6%,rgba(70,90,255,.55),transparent 70%),
+  radial-gradient(520px 460px at 92% 62%,rgba(160,70,255,.45),transparent 70%),
+  radial-gradient(600px 300px at 50% 100%,rgba(255,60,220,.35),transparent 70%),
+  linear-gradient(180deg,#0a1170,#01064a);min-height:100dvh}
+.ludo-players{display:none!important}
+.ludo-status{display:none!important}
+.gm-dock{position:relative;display:block;max-width:480px;margin:6px auto 0;padding:0}
+.gm-dock .dice{position:relative;z-index:2;display:grid;margin:0 auto -46px;width:92px;height:92px;
+  box-shadow:0 0 0 3px var(--c,#ffc53d),0 0 30px color-mix(in srgb,var(--c,#ffc53d) 80%,transparent),0 8px 18px rgba(0,0,0,.5)}
+.gm-dock .gm-banner{margin:0;padding-top:0}
+.gm-dock .gm-banner img{border-radius:22px}
+.board-wrap{position:relative}
+.gm-sign{position:absolute;left:50%;top:50%;z-index:5;pointer-events:none;padding:10px 22px;border-radius:999px;
+  font-size:26px;font-weight:800;color:#fff;white-space:nowrap;transform:translate(-50%,-50%);
+  animation:gmsign 1.4s ease-out forwards;box-shadow:0 0 30px rgba(0,0,0,.5)}
+.gm-sign.cut{background:linear-gradient(180deg,#ff5c7a,#d6143c)}
+.gm-sign.home{background:linear-gradient(180deg,#ffd54f,#ff9800);color:#3a2300}
+@keyframes gmsign{0%{opacity:0;transform:translate(-50%,-40%) scale(.5)}15%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}30%{transform:translate(-50%,-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-90%) scale(1)}}
+
+/* ---------- ছবির মতো হুবহু মঞ্চ: ব্যাকগ্রাউন্ড ছবির উপর বোর্ড ও ছক্কা ---------- */
+#screen-ludo.active{background:linear-gradient(180deg,#01064a,#1a0a5e)}
+#screen-ludo .ludo-game{padding:0}
+.gm-stage{position:relative;width:100%;max-width:480px;margin:0 auto;aspect-ratio:841/1525;
+  background:url(img/game-bg.jpg) center/100% 100% no-repeat}
+.gm-stage .board-wrap{position:absolute;left:6.9%;width:86.2%;top:14.1%;aspect-ratio:725/740;margin:0;padding:0;
+  border:0;border-radius:3.2%;box-shadow:0 0 0 3px #e9b949,0 0 0 6px #6a3bd1,0 0 28px rgba(140,90,255,.55)}
+.gm-stage .board-wrap svg{width:100%;height:100%;display:block;border-radius:3.2%}
+.gm-stage .gm-dock{position:absolute;left:0;right:0;top:64.6%;height:11.5%;margin:0;max-width:none;display:block}
+.gm-stage .gm-dock .dice{position:absolute;left:7.7%;top:0;width:21.4%;height:auto;aspect-ratio:1;margin:0;
+  border-radius:22%;box-shadow:0 0 0 3px #f2b705,0 0 26px rgba(255,190,60,.8),0 8px 18px rgba(0,0,0,.5)}
+.gm-cap{position:absolute;left:30%;width:61%;top:14%;height:72%;border-radius:20px;display:flex;align-items:center;padding:0 22px;
+  background:linear-gradient(180deg,rgba(12,16,90,.92),rgba(6,8,60,.92));border:2px solid rgba(110,120,255,.55);box-shadow:inset 0 0 18px rgba(80,90,255,.25)}
+.gm-dot{width:26px;height:26px;border-radius:50%;background:var(--c,#e53935);box-shadow:0 0 14px var(--c,#e53935)}
+.gm-stage .gm-dock .dice .dice-q{font-size:clamp(26px,9vw,44px)}
+
+#screen-ludo.active{background:linear-gradient(180deg,#201db0 0,#201db0 100%)}
+
+/* ---------- স্পষ্ট চৌকো রাস্তা ও বড় বোর্ড ---------- */
+.cell{stroke:#6f68b0;stroke-width:.045}
+.cell.start,.cell.hc{stroke:rgba(20,10,80,.45);stroke-width:.045}
+.star{fill:#9a90e0}
+.star.start-star{fill:#fff;opacity:1}
+.gm-stage .board-wrap{left:2%;width:96%;top:10.5%}
+.gm-stage .gm-dock{top:65.2%}
+/* ছোট বা খাটো স্ক্রিনেও পুরোটা এক পর্দায় ঢোকে */
+.gm-stage{width:min(100%,calc((100dvh - 64px) * .5515))}
