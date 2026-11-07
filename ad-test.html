@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>এড টেস্ট</title>
+<style>
+body{margin:0;padding:16px;background:#0e0e32;color:#fff;font-family:sans-serif;line-height:1.5}
+h1{font-size:20px;margin:0 0 6px} .box{margin:14px 0;padding:12px;border:1px solid rgba(255,255,255,.2);border-radius:10px}
+.slot{width:320px;height:50px;background:#222;margin:8px 0;overflow:hidden}
+.ok{color:#5CFF9D}.bad{color:#ff8a8a} small{color:#bbb}
+</style></head><body>
+<h1>Adsterra এড টেস্ট</h1>
+<small>পেজটা খুলে ৩০ সেকেন্ড অপেক্ষা করো। তারপর নিচে ক্রমিক নম্বর সহ কোনটায় এড এলো, লিখে জানাও।</small>
+
+<div class="box"><b>০. এডের ঠিকানায় পৌঁছানো যায় কি?</b><div id="r0">দেখছি…</div></div>
+
+<div class="box"><b>১. সরাসরি (সাধারণ নিয়মে, ফ্রেম ছাড়া)</b>
+<div class="slot" id="s1"><script>atOptions={'key':'085e44b38ddd089f81b780065a818025','format':'iframe','height':50,'width':320,'params':{}};</script><script src="https://bauval.org/22/085e44b38ddd089f81b780065a818025"></script></div></div>
+
+<div class="box"><b>২. ফ্রেমে, বাধা ছাড়া</b><div class="slot" id="s2"></div></div>
+<div class="box"><b>৩. ফ্রেমে, সীমাবদ্ধ (অ্যাপে এখন যেটা আছে)</b><div class="slot" id="s3"></div></div>
+
+<script>
+var doc='<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;overflow:hidden;background:transparent}</style></head><body><script>atOptions={\'key\':\'085e44b38ddd089f81b780065a818025\',\'format\':\'iframe\',\'height\':50,\'width\':320,\'params\':{}};<\/script><script src="https://bauval.org/22/085e44b38ddd089f81b780065a818025"><\/script></body></html>';
+function mk(id,sb){var f=document.createElement('iframe');f.width=320;f.height=50;f.style.border=0;f.scrolling='no';if(sb)f.setAttribute('sandbox','allow-scripts allow-popups allow-popups-to-escape-sandbox');f.srcdoc=doc;document.getElementById(id).appendChild(f);}
+window.addEventListener('load',function(){mk('s2',false);mk('s3',true);});
+var r0=document.getElementById('r0');
+fetch('https://bauval.org/22/085e44b38ddd089f81b780065a818025',{mode:'no-cors'}).then(function(){r0.innerHTML='<span class="ok">হ্যাঁ, পৌঁছানো যাচ্ছে</span>';}).catch(function(e){r0.innerHTML='<span class="bad">না — আটকে যাচ্ছে (নেটওয়ার্ক বা এড-ব্লকার)</span>';});
+setTimeout(function(){
+  ['s1','s2','s3'].forEach(function(id){var el=document.getElementById(id);var has=el.querySelector('iframe')||el.querySelector('img,a,div');var h=el.scrollHeight;});
+},1000);
+</script>
+</body></html>
