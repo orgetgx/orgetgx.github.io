@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>বেড়া টেস্ট</title>
+<style>
+body{margin:0;padding:16px;background:#0e0e32;color:#fff;font-family:sans-serif;line-height:1.5}
+h1{font-size:20px;margin:0 0 6px}.box{margin:14px 0;padding:12px;border:1px solid rgba(255,255,255,.2);border-radius:10px}
+.slot{width:320px;height:50px;background:#222;margin:8px 0;overflow:hidden}small{color:#bbb;word-break:break-all}
+</style></head><body>
+<h1>বেড়া টেস্ট</h1>
+<small>পেজটা খুলে ৪০ সেকেন্ড অপেক্ষা করো। কোন নম্বরগুলোতে এড এলো লিখে জানাও (যেমন "১, ৩")। এডে চাপ দিও না।</small>
+<div id="list"></div>
+<script>
+var AD='085e44b38ddd089f81b780065a818025';
+var doc='<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;overflow:hidden;background:transparent}</style></head><body><script>atOptions={\'key\':\''+AD+'\',\'format\':\'iframe\',\'height\':50,\'width\':320,\'params\':{}};<\/script><script src="https://bauval.org/22/'+AD+'"><\/script></body></html>';
+var V=[
+ ['বেড়া নেই (এখন অ্যাপে যেটা আছে)',null],
+ ['স্ক্রিপ্ট + একই-উৎস + পপআপ',"allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"],
+ ['স্ক্রিপ্ট + একই-উৎস + পপআপ + ফর্ম + ব্যবহারকারীর চাপে লিংক',"allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms allow-top-navigation-by-user-activation"],
+ ['স্ক্রিপ্ট + পপআপ + ফর্ম + চাপে লিংক (একই-উৎস ছাড়া)',"allow-scripts allow-popups allow-popups-to-escape-sandbox allow-forms allow-top-navigation-by-user-activation"],
+ ['শুধু স্ক্রিপ্ট + একই-উৎস',"allow-scripts allow-same-origin"]
+];
+var L=document.getElementById('list');
+V.forEach(function(v,i){
+ var b=document.createElement('div');b.className='box';
+ b.innerHTML='<b>'+(i+1)+'. '+v[0]+'</b><br><small>'+(v[1]||'sandbox নেই')+'</small><div class="slot"></div>';
+ L.appendChild(b);
+});
+window.addEventListener('load',function(){
+ V.forEach(function(v,i){
+  setTimeout(function(){
+   var f=document.createElement('iframe');f.width=320;f.height=50;f.style.border=0;f.scrolling='no';
+   if(v[1])f.setAttribute('sandbox',v[1]);
+   f.srcdoc=doc;L.children[i].querySelector('.slot').appendChild(f);
+  },i*1500);
+ });
+});
+</script></body></html>
